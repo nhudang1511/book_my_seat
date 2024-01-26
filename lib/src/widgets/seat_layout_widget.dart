@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class SeatLayoutWidget extends StatelessWidget {
   final SeatLayoutStateModel stateModel;
   final void Function(int rowI, int colI, SeatState currentState)
-      onSeatStateChanged;
+  onSeatStateChanged;
 
   const SeatLayoutWidget({
     Key? key,
@@ -27,27 +27,27 @@ class SeatLayoutWidget extends StatelessWidget {
           ...List<int>.generate(stateModel.rows, (rowI) => rowI)
               .map<Row>(
                 (rowI) => Row(
-                  children: [
-                    ...List<int>.generate(stateModel.cols, (colI) => colI)
-                        .map<SeatWidget>((colI) => SeatWidget(
-                              model: SeatModel(
-                                seatState: stateModel.currentSeatsState[rowI]
-                                    [colI],
-                                rowI: rowI,
-                                colI: colI,
-                                seatSvgSize: stateModel.seatSvgSize,
-                                pathSelectedSeat: stateModel.pathSelectedSeat,
-                                pathDisabledSeat: stateModel.pathDisabledSeat,
-                                pathSoldSeat: stateModel.pathSoldSeat,
-                                pathUnSelectedSeat:
-                                    stateModel.pathUnSelectedSeat,
-                              ),
-                              onSeatStateChanged: onSeatStateChanged,
-                            ))
-                        .toList()
-                  ],
-                ),
-              )
+              children: [
+                ...List<int>.generate(stateModel.cols, (colI) => colI)
+                    .map<SeatWidget>((colI) => SeatWidget(
+                  model: SeatModel(
+                    seatState: stateModel.currentSeatsState[rowI]
+                    [colI],
+                    rowI: rowI,
+                    colI: colI,
+                    seatSvgSize: stateModel.seatSvgSize,
+                    pathSelectedSeat: stateModel.pathSelectedSeat,
+                    pathDisabledSeat: stateModel.pathDisabledSeat,
+                    pathSoldSeat: stateModel.pathSoldSeat,
+                    pathUnSelectedSeat:
+                    stateModel.pathUnSelectedSeat,
+                  ),
+                  onSeatStateChanged: onSeatStateChanged, col: colI, row: rowI,center: stateModel.cols ~/ 2,
+                ))
+                    .toList()
+              ],
+            ),
+          )
               .toList()
         ],
       ),
